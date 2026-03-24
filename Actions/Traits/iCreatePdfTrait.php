@@ -38,6 +38,23 @@ trait iCreatePdfTrait
     {
         // instantiate and use the dompdf class
         $dompdf = new Dompdf();
+        
+        // Add callbacks to customize rendering.
+        $dompdf->setCallbacks([
+            // Skip rendering frames with "fixed" positioning on the first page. This mostly results in automatic
+            // headers and footers only being rendered on the second page and beyond.
+            // TODO geb 2026-03-24: We might need a more control over what pages fixed frames will be rendered on. 
+            [
+                'event' => 'begin_frame',
+                'f' => function ($frame, $canvas, $fontMetrics) {
+                    $style = $frame->get_style();
+                    if ($canvas->get_page_number() === 1 && $style->position === "fixed") {
+                        $style->set_used("display", "none");
+                    }
+                }
+            ]
+        ]);
+        
         $options = $dompdf->getOptions();
         $options->setIsRemoteEnabled(true);
         $options->setIsPhpEnabled(true);
