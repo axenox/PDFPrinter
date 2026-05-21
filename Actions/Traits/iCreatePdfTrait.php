@@ -41,6 +41,8 @@ trait iCreatePdfTrait
         $options = $dompdf->getOptions();
         $options->setIsRemoteEnabled(true);
         $options->setIsPhpEnabled(true);
+        //enable font subsetting in Dompdf to reduce file sizes by only embedding the characters used ithe document
+        $options->set('enable_font_subsetting', true);
         $dompdf->loadHtml($contentHtml);
         
         // (Optional) Setup the paper size and orientation
