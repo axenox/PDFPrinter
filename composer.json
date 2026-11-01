@@ -5,6 +5,15 @@
         "dompdf/dompdf": "^3.1",
 		"ext-gd": "*"
     },
+    "license": [
+        "GPL-3.0+",
+        "proprietary"
+    ],
+    "support": {
+        "source": "https://github.com/axenox/pdfprinter",
+        "docs": "https://github.com/axenox/pdfprinter/blob/1.x-dev/Docs",
+        "issues": "https://github.com/axenox/pdfprinter/issues"
+    },
     "autoload": {
         "psr-4": {
             "\\axenox\\PDFPrinter\\": ""
